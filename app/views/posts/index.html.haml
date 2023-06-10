@@ -1,0 +1,24 @@
+%p{style: "color: green"}= notice
+%h1 Posts
+
+
+= search_form_for @q do |f|
+  = f.label :title
+  = f.search_field :title_eq
+  = f.label :rate_gteq
+  = f.search_field :rate_gteq
+  = f.button :submit
+
+%table
+  - @posts.each do |post|
+    %tr
+      %td
+        = post.title 
+      %td
+        = post.rate  
+      %td
+        = link_to "Show this post", post
+
+= paginate @posts
+
+= link_to "New post", new_post_path
